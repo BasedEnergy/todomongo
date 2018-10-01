@@ -6,17 +6,6 @@ const mongoose = require('mongoose');
 const COLLECTION = 'todolist';
 
 var db;
-// Connect to the database before starting the application server.
-mongoose.connect(process.env.MONGODB_URI,{ useNewUrlParser: true }, function (err, database) {
-    if (err) {
-        console.log(err);
-        process.exit(1);
-    }
-
-    db = database;
-
-    console.log("Database connection ready");
-});
 
 const app = express();
 
@@ -31,8 +20,20 @@ app.use(express.json());
 // -----------------
 require('./routes/routes.js')(app,db);
 
-// Starts our server on the predefined PORT
-//Using process.env.PORT to allow Heroku to dynamically choose its own port
-app.listen(process.env.PORT || 8080, function(){
-    console.log(`App is now listening on PORT `+ process.env.PORT);
+// Connect to the database before starting the application server.
+mongoose.connect(process.env.MONGODB_URI,{ useNewUrlParser: true }, function (err, database) {
+    if (err) {
+        console.log(err);
+        process.exit(1);
+    }
+
+    db = database;
+
+    console.log("Database connection ready");
+
+    // Starts our server on the predefined PORT
+    //Using process.env.PORT to allow Heroku to dynamically choose its own port
+    app.listen(process.env.PORT || 8080, function(){
+        console.log(`App is now listening on PORT `+ process.env.PORT);
+    });
 });
