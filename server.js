@@ -5,8 +5,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const COLLECTION = 'todolist';
 
-// Require all models
-// var db = require("./models");
 var db;
 
 const app = express();
