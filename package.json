@@ -1,0 +1,26 @@
+{
+  "name": "todomongo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "heroku-postbuild": "npm install --production",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BasedEnergy/todomongo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BasedEnergy/todomongo/issues"
+  },
+  "homepage": "https://github.com/BasedEnergy/todomongo#readme"
+}
