@@ -19,7 +19,7 @@ app.use(express.json());
 // Routes
 // -----------------
 
-require('./routes/routes.js')(app);
+require('./routes/routes.js')(app,db);
 
 // Connect to the database before starting the application server.
 mongoose.connect(process.env.MONGODB_URI,{ useNewUrlParser: true }, function (err, database) {

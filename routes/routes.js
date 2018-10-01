@@ -1,6 +1,6 @@
 const todoList = [];
 
-module.exports = function(app){
+module.exports = function(app,db){
 
     app.get('/api/data', function(req, res) {
         db.collection(COLLECTION).insertOne(new Item({label:'lol',checked: false}));
