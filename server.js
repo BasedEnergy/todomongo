@@ -3,12 +3,10 @@ const express = require('express');
 
 //MongoDB requirements
 const mongoose = require('mongoose');
-const ObjectID = mongoose.ObjectID;
 const COLLECTION = 'todolist';
-// const MONGODB_URI = 'mongodb://basedenergy:todo123@ds119853.mlab.com:19853/heroku_t5q5kmg3';
 
-// Create a database variable outside of the database connection callback to reuse the connection pool in your app.
-var db;
+// Require all models
+var db = require("./models");
 
 const app = express();
 
@@ -30,8 +28,6 @@ mongoose.connect(process.env.MONGODB_URI,{ useNewUrlParser: true }, function (er
         console.log(err);
         process.exit(1);
     }
-
-    db = database;
 
     console.log("Database connection ready");
 });
