@@ -9,7 +9,7 @@ var ItemSchema = new Schema({
     // `label` must be of type String
     label: String,
     // check` must be of type Boolean
-    checked: boolean
+    checked: Boolean
 });
 
 // This creates our model from the above schema, using mongoose's model method
