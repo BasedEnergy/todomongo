@@ -16,10 +16,6 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Routes
-// -----------------
-require('./routes/routes.js')(app,db);
-
 // Connect to the database before starting the application server.
 mongoose.connect(process.env.MONGODB_URI,{ useNewUrlParser: true }, function (err, database) {
     if (err) {
@@ -37,3 +33,7 @@ mongoose.connect(process.env.MONGODB_URI,{ useNewUrlParser: true }, function (er
         console.log(`App is now listening on PORT `+ process.env.PORT);
     });
 });
+
+// Routes
+// -----------------
+require('./routes/routes.js')(app,db);
