@@ -3,7 +3,7 @@ const todoList = [];
 module.exports = function(app){
 
     app.get('/api/data', function(req, res) {
-        db.Item.insertOne(new Item({label:'lol',checked: false}));
+        db.Item.create(new Item({label:'lol',checked: false}));
         return res.send(todoList);
     });
 
