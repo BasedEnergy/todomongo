@@ -6,7 +6,8 @@ const mongoose = require('mongoose');
 const COLLECTION = 'todolist';
 
 // Require all models
-var db = require("./models");
+// var db = require("./models");
+var db;
 
 const app = express();
 
@@ -28,6 +29,8 @@ mongoose.connect(process.env.MONGODB_URI,{ useNewUrlParser: true }, function (er
         console.log(err);
         process.exit(1);
     }
+
+    db = database;
 
     console.log("Database connection ready");
 });
