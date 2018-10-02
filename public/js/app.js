@@ -1,16 +1,16 @@
-$(function () {
+$(function() {
 
     const state = {
         todoList: [],
-        baseUrl: 'https://devin-todolist.herokuapp.com'
+        baseUrl:   'https://devin-todolist.herokuapp.com'
     };
 
-    const render = function () {
+    const render = function() {
 
         $.ajax({
             url: state.baseUrl + '/api/data',
             type: 'GET',
-            success: function (data) {
+            success: function(data) {
                 state.todoList = data;
 
                 $('#list').empty();
@@ -18,11 +18,9 @@ $(function () {
                 state.todoList.forEach((li, i) =>
                     $('#list').append(
                         $('<li>').attr('id', 'item' + i).append([
-                            //Adding the label to the id, so that upon click the item,to be checked, can be identified
-                            $('<input>').attr({ type: 'checkbox', id: i + li.label, class: 'check', checked: (li.checked === 'true') }),
-                            $('<label>').attr({ for: 'li' + i, class: 'lbl' }).append(li.label),
-                            //Adding the label to the id, so that upon click the item,to be deleted, can be identified
-                            $('<button>').attr({ id: li.label + i, class: 'delete' }).append(
+                            $('<input>').attr({type: 'checkbox', id: i + li._id, class: 'check', checked: (li.checked === 'true')}),
+                            $('<label>').attr({for: 'li' + i, class: 'lbl'}).append(li.label),
+                            $('<button>').attr({id: li._id + i, class: 'delete'}).append(
                                 $('<i>').attr('class', 'fas fa-times')
                             )
                         ])
@@ -33,7 +31,7 @@ $(function () {
     };
 
 
-    $('#addbutton').on('click', function () {
+    $('#addbutton').on('click', function(){
 
         const newItem = {
             label: $('#input').val().trim(),
@@ -43,8 +41,8 @@ $(function () {
         $.ajax({
             url: state.baseUrl + '/api/data',
             type: 'POST',
-            data: { item: newItem },
-            success: function (done) {
+            data: {item: newItem},
+            success: function(done) {
                 if (done)
                     render();
             }
@@ -52,34 +50,34 @@ $(function () {
     });
 
 
-    $('#list').on('click', '.delete', function () {
-        //Extracting label from the id
-        let lbl = $(this).attr('id');
-        lbl = lbl.slice(0, lbl.length - 1);
+    $('#list').on('click', '.delete', function(){
+        //Extracting _id from the id
+        let ID = $(this).attr('id');
+        ID = ID.slice(0, ID.length - 1);
 
         $.ajax({
             url: state.baseUrl + '/api/data',
             type: 'DELETE',
-            data: { label: lbl },
-            success: function (done) {
-                if (done)
-                    render();
+            data: {_id: ID},
+            success: function(done) {
+                if(done)
+                   render();
             }
         });
     });
 
 
-    $('#list').on('click', '.check', function () {
+    $('#list').on('click', '.check', function(){
         //Extracting label from the id
-        let lbl = $(this).attr('id');
-        lbl = lbl.slice(1, lbl.length);
+        let ID = $(this).attr('id');
+        ID = ID.slice(1, ID.length);
 
         $.ajax({
             url: state.baseUrl + '/api/data',
             type: 'PUT',
-            data: { label: lbl, checked: $(this).is(':checked') },
-            success: function (done) {
-                if (done)
+            data: {_id: ID, checked: $(this).is(':checked')},
+            success: function(done) {
+                if(done)
                     render();
             }
         });
