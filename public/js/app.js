@@ -2,7 +2,7 @@ $(function() {
 
     const state = {
         todoList: [],
-        baseUrl:   'https://devin-todolist.herokuapp.com'
+        baseUrl:   'https://devin-todolist.herokuapp.com/'
     };
 
     const render = function() {
